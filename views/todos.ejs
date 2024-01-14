@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List</title>
+</head>
+<body>
+  <h1> Noa todos </h1>
+  <div id="todo-list">
+    <% todos.forEach(function(todo) { %>
+      <p>
+        <%= todo.task %>
+        <form action="/todos/<%= todo.id %>?_method=PUT" method="post">
+          <input type="hidden" name="_method" value="PUT">
+          <input type="text" name="task" value="<%= todo.task %>">
+          <button type="submit">Edit</button>
+        </form>
+        
+        <form action="/todos/<%= todo.id %>?_method=DELETE" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit">Delete</button>
+        </form>
+      </p>
+    <% }); %>
+  </div>
+  <form id="todo-form" action="/todos" method="post">
+    <input type="text" name="task" placeholder="Enter a new task">
+    <button type="submit">Add Todo</button>
+  </form>
+</body>
+</html>
